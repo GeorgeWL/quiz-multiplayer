@@ -18,6 +18,6 @@ QuizAnswerInput.defaultProps = {
   type: "text",
 }
 QuizAnswerInput.propTypes = {
-  type: PropTypes.instanceOf(HTMLInputElement.type),
+  type: PropTypes.oneOf("text", "number"),
 }
 export default QuizAnswerInput
