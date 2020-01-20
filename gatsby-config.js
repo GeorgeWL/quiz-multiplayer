@@ -29,36 +29,32 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        // CommonMark mode (default: true)
-        commonmark: true,
-        // Footnotes mode (default: true)
-        footnotes: true,
-        // Pedantic mode (default: true)
-        pedantic: true,
-        // GitHub Flavored Markdown mode (default: true)
-        gfm: true,
-        // Plugins configs
-        plugins: [
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: "language-",
-              inlineCodeMarker: null,
-              aliases: {},
-              showLineNumbers: false,
-              noInlineHighlight: false,
-              prompt: {
-                user: "root",
-                host: "localhost",
-                global: false,
-              },
-              escapeEntities: {},
-            },
-          },
-        ],
+        path: `${__dirname}/src/markdown-pages`,
+        name: `markdown-pages`,
       },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      plugins: [
+        {
+          resolve: `gatsby-remark-prismjs`,
+          options: {
+            classPrefix: "language-",
+            inlineCodeMarker: null,
+            aliases: {},
+            showLineNumbers: false,
+            noInlineHighlight: false,
+            prompt: {
+              user: "root",
+              host: "localhost",
+              global: false,
+            },
+            escapeEntities: {},
+          },
+        },
+      ],
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
