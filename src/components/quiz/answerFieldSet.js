@@ -2,19 +2,25 @@ import React from "react"
 import PropTypes from "prop-types"
 import QuizAnswer from "./answerRadio"
 // import "./StylesClass.scss"
-const QuizAnswers = ({ answers, onChange }) => (
+const QuizAnswers = ({ answers, id, selected, onChange }) => (
   <fieldset>
-    {answers.map((answer, i) => (
-      <QuizAnswer
-        key={i + answer.id}
-        selected={answer.selected}
-        onChange={onChange}
-      >
-        {answer.label}
-      </QuizAnswer>
-    ))}
+    <ul>
+      {answers.map((answer, i) => (
+        <QuizAnswer
+          key={i + answer.id}
+          id={id}
+          value={answer.id}
+          selected={selected === answer.id}
+          onChange={onChange}
+        >
+          {answer.label}
+        </QuizAnswer>
+      ))}
+    </ul>
   </fieldset>
 )
-QuizAnswers.defaultProps = {}
-QuizAnswers.propTypes = {}
+QuizAnswers.defaultProps = { answers: [] }
+QuizAnswers.propTypes = {
+  answers: PropTypes.arrayOf(PropTypes.node).isRequired,
+}
 export default QuizAnswers
