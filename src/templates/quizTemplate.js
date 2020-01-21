@@ -5,7 +5,7 @@ import QuizQuestion from "../components/quiz/question"
 import QuizAnswers from "../components/quiz/answerFieldSet"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import shortid from "shortid"
+import QuizSolution from "../components/quiz/solution"
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -13,14 +13,15 @@ export default function Template({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   const mapAnswers = frontmatter.answers
-    ? frontmatter.answers.map(answer => {
+    ? frontmatter.answers.map((answer, i) => {
         return {
-          id: shortid.generate(),
+          id: i,
           label: answer,
         }
       })
     : []
   const [currentAnswer, setCurrentAnswer] = useState(null)
+  const [answered, setAnswered] = useState(false)
   const handleAnswerChange = id => {
     setCurrentAnswer(id)
   }
@@ -42,8 +43,16 @@ export default function Template({
             onChange={handleAnswerChange}
             selected={currentAnswer}
             id={`question${frontmatter.questionNumber}`}
+            disabled={answered}
           />
         )}
+        {answered && (
+          <QuizSolution
+            selected={mapAnswers[currentAnswer]}
+            correctAnswer={mapAnswers[frontmatter.correctAnswer]}
+          />
+        )}
+        <button onClick={() => setAnswered(true)}>Submit Answer</button>
       </QuizContainer>
     </Layout>
   )

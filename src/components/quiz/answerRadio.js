@@ -1,21 +1,22 @@
 import React from "react"
 import PropTypes from "prop-types"
 // import "./StylesClass.scss"
-const QuizAnswer = ({ children, id, selected, onChange }) => {
-  const handleChange = evt => {
-    const { value } = evt.target
+const QuizAnswer = ({ children, id, selected, disabled, value, onChange }) => {
+  const handleChange = () => {
     onChange(value)
   }
   return (
     <li>
       <input
         type="radio"
-        name={id}
-        value={selected}
+        id={id}
+        value={value}
+        checked={selected}
         onChange={handleChange}
+        disabled={disabled}
         className="StylesClass"
       />
-      {children}
+      <label htmlFor={value}>{children}</label>
     </li>
   )
 }
