@@ -20,7 +20,9 @@ menu,
 nav,
 section,
 summary {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 audio,
 canvas,

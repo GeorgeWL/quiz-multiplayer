@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import React, { useState } from "react"
 import QuizContainer from "../components/quiz/container"
 import QuizQuestion from "../components/quiz/question"
@@ -53,6 +53,11 @@ export default function Template({
           />
         )}
         <button onClick={() => setAnswered(true)}>Submit Answer</button>
+        {answered && (
+          <Link to={`/quiz/${frontmatter.questionNumber + 1}`}>
+            Next Question
+          </Link>
+        )}
       </QuizContainer>
     </Layout>
   )
