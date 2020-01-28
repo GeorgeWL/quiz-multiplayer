@@ -14,25 +14,28 @@ collections:
     editor:
       preview: true
     fields:
-      - 
+      - {
           label: "Question",
           name: "question",
           widget: "string",
           note: "e.g. What is 5 + 5?",
-      - 
-          label: "Answers",
+        }
+      - {
+          label: "answers",
           name: "answers",
           widget: "list",
-          field: {label: "Answer",name: "answer", widget: "string"}
-          note: "list of possible answers.Currently can only be one correct answer, I'll possibly add other question types later",
-      - 
+          note: "list of possible answers. Currently can only be one correct answer, I'll possibly add other question types later",
+        }
+      - {
           label: "Correct Answer",
           name: "correctAnswer",
           widget: "number",
           note: "first answer in list is 0, second is 1, etc.",
-      - 
+        }
+      - {
           label: "Body",
           name: "body",
           widget: "markdown",
           required: false,
           hint: "any extra text that could be useful, such as an example code snippet",
+        }
